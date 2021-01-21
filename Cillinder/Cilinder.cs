@@ -18,13 +18,9 @@ namespace Rekening
 
         }
 
-        public Cilinder(double x, double y, double r, double h)
+        public Cilinder(double x, double y, double r, double h) : base (x,y,r)
         {
-            X = x;
-            Y = y;
-            R = r;
             H = h;
-
         }
         public double Volume()
         {

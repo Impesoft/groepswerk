@@ -18,10 +18,8 @@ namespace Rekening
         {
 
         }
-        public Cirkel(double x,double y, double r)
+        public Cirkel(double x,double y, double r) : base (x,y)
         {
-            X = x;
-            Y = y;
             R = r;
 
         }
