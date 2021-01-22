@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Rekening
+namespace CilinderForm
 {
     public partial class CilinderAppForm : Form
     {
