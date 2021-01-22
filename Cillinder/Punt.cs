@@ -1,4 +1,6 @@
-﻿namespace Rekening
+﻿using System;
+
+namespace Rekening
 {
     public class Punt
     {
@@ -20,6 +22,8 @@
 
         public Punt()
         {
+            X = new Random().Next(1, 200);
+            Y = new Random().Next(1, 100);
         }
 
         public Punt(double x, double y)

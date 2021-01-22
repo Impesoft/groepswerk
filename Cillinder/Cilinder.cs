@@ -14,6 +14,7 @@ namespace Rekening
 
         public Cilinder()
         {
+            H = new Random().Next(1, 100);
         }
 
         public Cilinder(double x, double y, double r, double h) : base(x, y, r)

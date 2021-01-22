@@ -12,8 +12,9 @@ namespace Rekening
             set { _r = value; }
         }
 
-        public Cirkel()
+        public Cirkel() : base()
         {
+            R = new Random().Next(1, 10);
         }
 
         public Cirkel(double x, double y, double r) : base(x, y)
