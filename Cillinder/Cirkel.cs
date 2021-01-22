@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Rekening
 {
@@ -16,26 +14,27 @@ namespace Rekening
 
         public Cirkel()
         {
-
         }
-        public Cirkel(double x,double y, double r) : base (x,y)
+
+        public Cirkel(double x, double y, double r) : base(x, y)
         {
             R = r;
-
         }
+
         public double Omtrek()
         {
             return 2 * Math.PI * R;
         }
+
         public virtual double Oppervlakte()
         {
             return Math.PI * R * R;
         }
+
         public override string Gegevens()
         {
             string tekstueleVoorstelling = $"{base.Gegevens()} straal {R}";
             return tekstueleVoorstelling;
-
         }
     }
 }

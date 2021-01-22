@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
-
-namespace Rekening
+﻿namespace Rekening
 {
     public class Punt
     {
@@ -14,6 +9,7 @@ namespace Rekening
             get { return _x; }
             set { _x = value; }
         }
+
         private double _y;
 
         public double Y
@@ -24,17 +20,18 @@ namespace Rekening
 
         public Punt()
         {
-
         }
+
         public Punt(double x, double y)
         {
             X = x;
             Y = y;
         }
+
         public virtual string Gegevens()
         {
             string tekstueleVoorstelling = $"({_x},{_y})";
-            return(tekstueleVoorstelling);
+            return (tekstueleVoorstelling);
         }
     }
 }
