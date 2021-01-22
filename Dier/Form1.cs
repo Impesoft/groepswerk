@@ -6,7 +6,7 @@ namespace Dieren
     public partial class Form1 : Form
     {
         public bool animalInstantiated = false;
-        Dier dierObject = null;
+        private IDier dierObject;
 
         public Form1()
         {
@@ -20,26 +20,55 @@ namespace Dieren
             if (heeftNaam)
             {
                 NaamBox.Enabled = false;
-                if (Cat.Checked)
-                {
-                    dierObject = new Dieren.Kat(naam);
-                    animalInstantiated = true;
-                }
-                if (Parrot.Checked)
-                {
-                    dierObject = new Dieren.Papegaai(naam);
-                    animalInstantiated = true;
-                }
-                if (Human.Checked)
-                {
-                    dierObject = new Dieren.Mens(naam);
-                    animalInstantiated = true;
-                }
+                MaakDier(naam);
             }
             else
             {
                 MessageBox.Show("Geef je dier een naam!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void MaakDier(string naam)
+        {
+            IkBenEen dierType = 0;
+            animalInstantiated = true;
+            if (Cat.Checked)
+            {
+                dierType = IkBenEen.Kat;
+            }
+            if (Parrot.Checked)
+            {
+                dierType = IkBenEen.Papegaai;
+            }
+            if (Human.Checked)
+            {
+                dierType = IkBenEen.Mens;
+            }
+            IDier dierObject = DitIsEen(dierType, naam);
+        }
+
+        private IDier DitIsEen(IkBenEen dierType, string naam)
+        {
+            IDier dierObject;
+            switch (dierType)
+            {
+                case IkBenEen.Kat:
+                    dierObject = new Dieren.Kat(naam);
+                    break;
+
+                case IkBenEen.Papegaai:
+                    dierObject = new Dieren.Papegaai(naam);
+                    break;
+
+                case IkBenEen.Mens:
+                    dierObject = new Dieren.Mens(naam);
+                    break;
+
+                default:
+                    MessageBox.Show("uitzondering Onbekend Dier");
+                    return null;
+            }
+            return dierObject;
         }
 
         private void Praten_Click(object sender, EventArgs e)
@@ -52,7 +81,7 @@ namespace Dieren
                     string tekst = dierObject.Praten(selected.ToString());
                     if (tekst != "")
                     {
-                        MessageBox.Show($"{dierObject.Naam} : {tekst}", "praat");
+                        MessageBox.Show($"{dierObject.Name} : {tekst}", "praat");
                     }
                 }
                 else
@@ -73,7 +102,7 @@ namespace Dieren
                 string tekst = dierObject.Strelen();
                 if (tekst != "")
                 {
-                    MessageBox.Show($"{dierObject.Naam} : {tekst}", "strelen");
+                    MessageBox.Show($"{dierObject.Name} : {tekst}", "strelen");
                 }
             }
             else
@@ -94,7 +123,7 @@ namespace Dieren
                 string tekst = dierObject.Eten();
                 if (tekst != "")
                 {
-                    MessageBox.Show($"{dierObject.Naam} : {tekst}", "eten");
+                    MessageBox.Show($"{dierObject.Name} : {tekst}", "eten");
                 }
             }
             else
@@ -107,7 +136,7 @@ namespace Dieren
         {
             dierObject = null;
             NaamBox.Text = "";
-            NaamBox.Enabled=true;
+            NaamBox.Enabled = true;
             animalInstantiated = false;
         }
 

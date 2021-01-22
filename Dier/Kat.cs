@@ -4,16 +4,23 @@ using System.Text;
 
 namespace Dieren
 {
-    internal class Kat : Dier
+    internal class Kat : IDier
     {
         private int _teller = 0;
+        private string name;
 
-        public Kat(string naam) : base(naam)
+        public string Name
         {
-            Naam = naam;
+            get { return name; }
+            set { name = value; }
         }
 
-        public override string Praten(string vraag)
+        public Kat(string naam)
+        {
+            Name = naam;
+        }
+
+        public string Praten(string vraag)
         {
             _teller++;
             if (_teller % 3 == 0)
@@ -23,9 +30,14 @@ namespace Dieren
             return "";
         }
 
-        public override string Strelen()
+        public string Strelen()
         {
             return "RrRr.";
+        }
+
+        public string Eten()
+        {
+            return "";
         }
     }
 }

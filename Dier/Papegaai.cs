@@ -4,16 +4,23 @@ using System.Text;
 
 namespace Dieren
 {
-    internal class Papegaai : Dier
+    internal class Papegaai : IDier
     {
         private Random rnd = new Random();
+        private string name;
 
-        public Papegaai(string naam) : base(naam)
+        public string Name
         {
-            Naam = naam;
+            get { return name; }
+            set { name = value; }
         }
 
-        public override string Praten(string vraag)
+        public Papegaai(string naam)
+        {
+            Name = naam;
+        }
+
+        public string Praten(string vraag)
         {
             int chance = rnd.Next(1, 6);
             if (chance == 3)
@@ -26,9 +33,14 @@ namespace Dieren
             }
         }
 
-        public override string Strelen()
+        public string Strelen()
         {
             return "Koko.";
+        }
+
+        public string Eten()
+        {
+            return "";
         }
     }
 }

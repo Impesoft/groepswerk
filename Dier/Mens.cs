@@ -4,19 +4,27 @@ using System.Text;
 
 namespace Dieren
 {
-    internal class Mens : Dier
+    internal class Mens : IDier
     {
-        public Mens(string naam) : base(naam)
+        private string name;
+
+        public string Name
         {
-            Naam = naam;
+            get { return name; }
+            set { name = value; }
         }
 
-        public override string Eten()
+        public Mens(string naam)
+        {
+            Name = naam;
+        }
+
+        public string Eten()
         {
             return "Amai!\nDa's Lekker!";
         }
 
-        public override string Praten(string vraag)
+        public string Praten(string vraag)
         {
             switch (vraag)
             {
@@ -30,7 +38,7 @@ namespace Dieren
                     return "Yah Man!";
 
                 case "Hoe oud bent u?":
-                    return "Hoe onbeleefd ben u!";
+                    return "Hoe onbeleefd bent u!";
 
                 case "En? hoe voelen we ons vandaag?":
                     return "tiptop!";
@@ -56,7 +64,7 @@ namespace Dieren
             // listBox.SelectedItem.ToString()
         }
 
-        public override string Strelen()
+        public string Strelen()
         {
             return "Blijf van mijn lijf. Arrh.";
         }

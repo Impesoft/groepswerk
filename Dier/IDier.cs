@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Dieren
+﻿namespace Dieren
 {
     internal interface IDier
     {
-        public string Eten();
+        string Name { get; set; }
 
-        public string Praten(string vraag);
+        string Praten(string vraag);
 
-        public string Strelen();
+        string Strelen();
+
+        string Eten();
     }
 }
