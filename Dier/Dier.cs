@@ -4,39 +4,40 @@ using System.Text;
 
 namespace Dieren
 {
- 
-    abstract class Dier
+    internal abstract class Dier : IDier
     {
         public virtual string Eten()
         {
             return "";
         }
+
         public virtual string Praten(string vraag)
         {
             return "";
         }
+
         public virtual string Strelen()
         {
             return "";
         }
-        public virtual string Naam 
+
+        public virtual string Naam
         {
             get
             {
                 return _naam;
             }
-            protected set 
+            protected set
             {
                 _naam = value;
             }
         }
+
         private string _naam;
+
         protected Dier(string naam)
         {
-    
-            
-                _naam = naam;
-            
+            _naam = naam;
         }
     }
 }
