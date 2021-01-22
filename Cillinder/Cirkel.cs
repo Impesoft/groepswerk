@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Rekening
+namespace CilinderForm
 {
     public class Cirkel : Punt
     {

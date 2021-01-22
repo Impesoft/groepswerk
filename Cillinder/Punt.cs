@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Rekening
+namespace CilinderForm
 {
-    public class Punt
+    public class Punt : IPunt
     {
         private double _x;
 
