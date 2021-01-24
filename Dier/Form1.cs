@@ -5,8 +5,8 @@ namespace Dieren
 {
     public partial class Form1 : Form
     {
-        public bool animalInstantiated = false;
-        private IDier dierObject;
+        public bool AnimalInstantiated = false;
+        public IDier DierObject;
 
         public Form1()
         {
@@ -16,6 +16,11 @@ namespace Dieren
         private void Create_Click(object sender, EventArgs e)
         {
             string naam = NaamBox.Text.ToString();
+            CheckHeeftNaam(naam);
+        }
+
+        private void CheckHeeftNaam(string naam)
+        {
             bool heeftNaam = (naam != "");
             if (heeftNaam)
             {
@@ -24,14 +29,21 @@ namespace Dieren
             }
             else
             {
-                MessageBox.Show("Geef je dier een naam!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Error("Geef je dier een naam!");
             }
         }
 
         private void MaakDier(string naam)
         {
+            IkBenEen dierType;
+            AnimalInstantiated = true;
+            dierType = DefineDierType();
+            DierObject = DitIsEen(dierType, naam);
+        }
+
+        private IkBenEen DefineDierType()
+        {
             IkBenEen dierType = 0;
-            animalInstantiated = true;
             if (Cat.Checked)
             {
                 dierType = IkBenEen.Kat;
@@ -44,10 +56,10 @@ namespace Dieren
             {
                 dierType = IkBenEen.Mens;
             }
-            IDier dierObject = DitIsEen(dierType, naam);
+            return dierType;
         }
 
-        private IDier DitIsEen(IkBenEen dierType, string naam)
+        public IDier DitIsEen(IkBenEen dierType, string naam)
         {
             IDier dierObject;
             switch (dierType)
@@ -65,7 +77,7 @@ namespace Dieren
                     break;
 
                 default:
-                    MessageBox.Show("uitzondering Onbekend Dier");
+                    Error("uitzondering Onbekend Dier");
                     return null;
             }
             return dierObject;
@@ -73,41 +85,37 @@ namespace Dieren
 
         private void Praten_Click(object sender, EventArgs e)
         {
-            if (animalInstantiated)
+            if (AnimalInstantiated)
             {
-                var selected = Vraag.SelectedItem;
-                if (selected != null)
-                {
-                    string tekst = dierObject.Praten(selected.ToString());
-                    if (tekst != "")
-                    {
-                        MessageBox.Show($"{dierObject.Name} : {tekst}", "praat");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Geen tekst geselecteerd!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                PraatAlsIkKan();
             }
             else
             {
-                MessageBox.Show("Dit dier werd niet geinstantieerd!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Error("Dit dier werd niet geinstantieerd!");
             }
         }
 
         private void Strelen_Click(object sender, EventArgs e)
         {
-            if (animalInstantiated)
+            if (AnimalInstantiated)
             {
-                string tekst = dierObject.Strelen();
-                if (tekst != "")
-                {
-                    MessageBox.Show($"{dierObject.Name} : {tekst}", "strelen");
-                }
+                AlDanNietReageerOpStrelen();
             }
             else
             {
-                MessageBox.Show("Dit dier werd niet geinstantieerd!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Error("Dit dier werd niet geinstantieerd!");
+            }
+        }
+
+        private void Eten_Click(object sender, EventArgs e)
+        {
+            if (AnimalInstantiated)
+            {
+                AlDanNietBespreekEten();
+            }
+            else
+            {
+                Error("Dit dier werd niet geinstantieerd!");
             }
         }
 
@@ -116,44 +124,77 @@ namespace Dieren
             Application.Exit();
         }
 
-        private void Eten_Click(object sender, EventArgs e)
+        private void PraatAlsIkKan()
         {
-            if (animalInstantiated)
+            var selected = Vraag.SelectedItem;
+            if (selected != null)
             {
-                string tekst = dierObject.Eten();
-                if (tekst != "")
-                {
-                    MessageBox.Show($"{dierObject.Name} : {tekst}", "eten");
-                }
+                Praat(selected);
             }
             else
             {
-                MessageBox.Show("Dit dier werd niet geinstantieerd!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Error("Geen tekst geselecteerd!");
             }
+        }
+
+        private void Praat(object selected)
+        {
+            string tekst = DierObject.Praten(selected.ToString());
+            if (tekst != "")
+            {
+                Popup(tekst, "praat");
+            }
+        }
+
+        private void AlDanNietReageerOpStrelen()
+        {
+            string tekst = DierObject.Strelen();
+            if (tekst != "")
+            {
+                Popup(tekst, "strelen");
+            }
+        }
+
+        private void AlDanNietBespreekEten()
+        {
+            string tekst = DierObject.Eten();
+            if (tekst != "")
+            {
+                Popup(tekst, "eten");
+            }
+        }
+
+        private void Popup(string tekst, string methode)
+        {
+            MessageBox.Show($"{DierObject.Name} : {tekst}", methode);
+        }
+
+        private void Error(string errorMessage)
+        {
+            MessageBox.Show(errorMessage, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void Cat_CheckedChanged(object sender, EventArgs e)
         {
-            dierObject = null;
-            NaamBox.Text = "";
-            NaamBox.Enabled = true;
-            animalInstantiated = false;
+            ResetValues();
         }
 
         private void Parrot_CheckedChanged(object sender, EventArgs e)
         {
-            dierObject = null;
-            NaamBox.Text = "";
-            NaamBox.Enabled = true;
-            animalInstantiated = false;
+            ResetValues();
         }
 
         private void Human_CheckedChanged(object sender, EventArgs e)
         {
-            dierObject = null;
+            ResetValues();
+        }
+
+        private void ResetValues()
+        {
+            DierObject = null;
             NaamBox.Text = "";
             NaamBox.Enabled = true;
-            animalInstantiated = false;
+            AnimalInstantiated = false;
         }
     }
 }

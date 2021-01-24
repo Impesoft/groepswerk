@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Dieren
+﻿namespace Dieren
 {
     internal class Mens : IDier
     {
@@ -61,7 +57,6 @@ namespace Dieren
                 default:
                     return "";
             }
-            // listBox.SelectedItem.ToString()
         }
 
         public string Strelen()

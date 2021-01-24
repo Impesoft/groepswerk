@@ -1,6 +1,6 @@
 ﻿namespace Dieren
 {
-    internal interface IDier
+    public interface IDier
     {
         string Name { get; set; }
 

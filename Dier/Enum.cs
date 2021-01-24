@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Dieren
+﻿namespace Dieren
 {
-    internal enum IkBenEen
+    public enum IkBenEen
     {
         Kat = 1,
         Papegaai = 2,

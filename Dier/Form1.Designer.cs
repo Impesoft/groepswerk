@@ -192,7 +192,7 @@ namespace Dieren
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(637, 450);
             this.Controls.Add(this.Create);
             this.Controls.Add(this.ButtonPraten);
             this.Controls.Add(this.Close);

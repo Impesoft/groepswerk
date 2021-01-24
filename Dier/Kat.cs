@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Dieren
+﻿namespace Dieren
 {
     internal class Kat : IDier
     {
