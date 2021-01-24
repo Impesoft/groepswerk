@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Rekening
 {
-    class SpaarRekening : Rekening
+    internal class SpaarRekening : Rekening
     {
         private double _percentage;
 
@@ -16,16 +16,17 @@ namespace Rekening
             set { _percentage = value; }
         }
 
-        public SpaarRekening(string accountNumber, double saldo, double percentage)
-            :base(accountNumber, saldo)
+        public SpaarRekening(string rekeningnummer, double saldo, double intrest)
+            : base(rekeningnummer, saldo)
         {
-            Percentage = percentage;
+            Percentage = intrest;
         }
-        
+
         public void SchrijfRenteBij()
         {
             Saldo += (Saldo / 100) * Percentage;
         }
+
         public override string ToString()
         {
             return base.ToString() + $" ( {Percentage}%)";

@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace Rekening
 {
-    class ZichtRekening : Rekening
+    internal class ZichtRekening : Rekening
     {
         public ZichtRekening(string rekeningNummer, double saldo)
-            :base(rekeningNummer, saldo)
+            : base(rekeningNummer, saldo)
         {
             Minimum = -100;
         }
-
-
     }
 }

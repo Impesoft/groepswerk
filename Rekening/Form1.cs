@@ -12,14 +12,15 @@ namespace Rekening
 {
     public partial class Form1 : Form
     {
-        Rekening rekening = new Rekening("123-4530396-13", 100);
-        SpaarRekening spaar = new SpaarRekening("735-1420224-12", 200, 5);
-        ZichtRekening zicht = new ZichtRekening("987-6543210-12", 25);
+        private Rekening rekening = new Rekening("123-4530396-13", 100);
+        private SpaarRekening spaarrekening = new SpaarRekening("735-1420224-12", 200, 5);
+        private ZichtRekening zichtrekening = new ZichtRekening("987-6543210-12", 25);
+
         public Form1()
         {
             InitializeComponent();
         }
-       
+
         private void RekeningPlus_Click(object sender, EventArgs e)
         {
             rekening.Storten(Convert.ToDouble(invoerRekening.Text));
@@ -34,39 +35,39 @@ namespace Rekening
 
         private void SpaarPlus_Click(object sender, EventArgs e)
         {
-            spaar.Storten(Convert.ToDouble(invoerSpaar.Text));
-            uitvoerSpaar.Text = spaar.ToString();
+            spaarrekening.Storten(Convert.ToDouble(invoerSpaar.Text));
+            uitvoerSpaarrekening.Text = spaarrekening.ToString();
         }
 
         private void SpaarMin_Click(object sender, EventArgs e)
         {
-            spaar.Afhalen(Convert.ToDouble(invoerSpaar.Text));
-            uitvoerSpaar.Text = spaar.ToString();
+            spaarrekening.Afhalen(Convert.ToDouble(invoerSpaar.Text));
+            uitvoerSpaarrekening.Text = spaarrekening.ToString();
         }
 
         private void Intrest_Click(object sender, EventArgs e)
         {
-            spaar.SchrijfRenteBij();
-            uitvoerSpaar.Text = spaar.ToString();
+            spaarrekening.SchrijfRenteBij();
+            uitvoerSpaarrekening.Text = spaarrekening.ToString();
         }
 
         private void ZichtPlus_Click(object sender, EventArgs e)
         {
-            zicht.Storten(Convert.ToDouble(invoerZicht.Text));
-            uitvoerZicht.Text = zicht.ToString();
+            zichtrekening.Storten(Convert.ToDouble(invoerZicht.Text));
+            uitvoerZichtrekening.Text = zichtrekening.ToString();
         }
 
         private void ZichtMin_Click(object sender, EventArgs e)
         {
-            zicht.Afhalen(Convert.ToDouble(invoerZicht.Text));
-            uitvoerZicht.Text = zicht.ToString();
+            zichtrekening.Afhalen(Convert.ToDouble(invoerZicht.Text));
+            uitvoerZichtrekening.Text = zichtrekening.ToString();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             uitvoerRekening.Text = rekening.ToString();
-            uitvoerSpaar.Text = spaar.ToString();
-            uitvoerZicht.Text = zicht.ToString();
+            uitvoerSpaarrekening.Text = spaarrekening.ToString();
+            uitvoerZichtrekening.Text = zichtrekening.ToString();
         }
     }
 }
